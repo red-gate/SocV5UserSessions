@@ -16,12 +16,14 @@ Firstly you will need the to enable the new Migrations features:
 </EngineOptions>
 ```
 
-### Repository & Database Setup
+### Repository Setup
 
 1. Fork this repository.
 - Clone the repository to your development machine.
-- Create a new database in SQL Server: `talkr`.
-- Select the newly created `talkr` database.
+
+### Database Setup
+1. Create a new database in SQL Server: `talkr-master`.
+- Select the newly created `talkr-master` database.
 - In SQL Source Control:
   1. Go to the Setup tab.
   - Choose "Link to my source control system".
@@ -30,6 +32,7 @@ Firstly you will need the to enable the new Migrations features:
   - Click "Link".
   - Go to the "Get Latest" tab.
   - Click "Apply changes to database".
+- Insert data into the database by [running this script](/examples/data.sql)
 
 ### Database Diagram
 The talkr database currently consists of 3 tables (2 static data, 1 transactional), 3 views, and a function:
@@ -51,6 +54,7 @@ Column              | Before             | After
 
 ###### Instructions
 1. Create a branch from `master` called `express-shipping`.
+- Use the Database Setup instructions above but name it `talkr-express-shipping`
 - Solve the above problem, [or use this SQL](/examples/express-shipping.sql).
 - Use the migrations tab in SQL Source Control to create a migration script covering your change.
 - Commit your migration script.
@@ -72,8 +76,8 @@ Column              | Before                 | After
 `country_code`      | UK                     | SC
 
 ###### Instructions
-1. Start with a new database, see Repository & Database Setup for linking the database.
-- Create a branch from `master` called `scottish-independence`.
+1. Create a branch from `master` called `scottish-independence`.
+- Use the Database Setup instructions above but name it `talkr-scottish-independence`
 - Solve the above problem, [or use this SQL](/examples/scottish-independence.sql).
 - Use the migrations tab in SQL Source Control to create a migration script covering your change.
 - Commit your migration script.
@@ -96,8 +100,8 @@ Column       | Before          | After
 `last_name`  | <doesn't exist> | Smith
 
 ###### Instructions
-1. Start with a new database, see Repository & Database Setup for linking the database.
-- Create a branch from `master` called `split-name`.
+1.Create a branch from `master` called `split-name`.
+- Use the Database Setup instructions above but name it `talkr-split-name`
 - Solve the above problem, [or use this SQL](/examples/split-name.sql).
 - Use the migrations tab in SQL Source Control to create a migration script covering your change.
 - Commit your migration script.
