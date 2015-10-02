@@ -5,10 +5,11 @@ Example scenarios for working with Migrations in SQL Source Control, using the f
 
 Firstly you will need the to enable the new Migrations features:
 
-1. Update to the latest [SQL Source Control, Frequent Updates](http://documentation.red-gate.com/display/SOC4/Turning+on+Frequent+Updates)
-2. Edit the Engine options file: `%LocalAppData%\Red Gate\SQL Source Control 4\RedGate_SQLSourceControl_Engine_EngineOptions.xml`
-3. Inside the <EngineOptions> tags, add: `<UseMigrationBlocks>True</UseMigrationBlocks>`
-4. Ignoring any comments (or other lines you may have added), the final file should look like this:
+1. Turn on [Frequent Updates](http://documentation.red-gate.com/display/SOC4/Turning+on+Frequent+Updates)
+- Update to the latest SQL Source Control version.
+- Edit the Engine options file: `%LocalAppData%\Red Gate\SQL Source Control 4\RedGate_SQLSourceControl_Engine_EngineOptions.xml`
+- Inside the <EngineOptions> tags, add: `<UseMigrationBlocks>True</UseMigrationBlocks>`
+- Ignoring any comments (or other lines you may have added), the final file should look like this:
 ```xml
 <EngineOptions version="4" type="EngineOptions">
 	<UseMigrationBlocks>True</UseMigrationBlocks>
@@ -18,16 +19,17 @@ Firstly you will need the to enable the new Migrations features:
 ### Repository & Database Setup
 
 1. Fork this repository.
-2. Clone the repository to your development machine.
-3. Create a new database in SQL Server: `talkr`.
-4. In SQL Source Control:
+- Clone the repository to your development machine.
+- Create a new database in SQL Server: `talkr`.
+- Select the newly created `talkr` database.
+- In SQL Source Control:
   1. Go to the Setup tab.
-  2. Choose "Link to my source control system".
-  3. Choose "Git".
-  4. Choose the `database` folder inside the `example-talkr` repo.
-  5. Click "Link".
-  6. Go to the "Get Latest" tab.
-  7. Click "Apply changes to database".
+  - Choose "Link to my source control system".
+  - Choose "Git".
+  - Browse to the `database` folder inside your `example-talkr` repo.
+  - Click "Link".
+  - Go to the "Get Latest" tab.
+  - Click "Apply changes to database".
 
 ### Database Diagram
 The talkr database currently consists of 3 tables (2 static data, 1 transactional), 3 views, and a function:
@@ -48,11 +50,11 @@ Column              | Before             | After
 `express_shipping`  | `0` / `1` / `NULL` | `0` / `1` (`NULL` becomes `1`)
 
 ###### Instructions
-1. Using your source control tool create a branch from `master` called `express-shipping`.
-2. Solve the set problem, [or use this SQL](/examples/express-shipping.sql).
-3. Use the migrations tab in SQL Source Control to create and commit a migration script covering your change.
-4. Push to your branch, **don't merge to master yet**.
-5. Switch to the `master` branch, start with a new database or revert your changes.
+1. Create a branch from `master` called `express-shipping`.
+- Solve the above problem, [or use this SQL](/examples/express-shipping.sql).
+- Use the migrations tab in SQL Source Control to create and commit a migration script covering your change.
+- Push to your branch, **don't merge to master yet**.
+- Switch to the `master` branch.
 
 ### Scottish Independence
 
@@ -69,11 +71,12 @@ Column              | Before                 | After
 `country_code`      | UK                     | SC
 
 ###### Instructions
-1. Using your source control tool create a branch from `master` called `scottish-independence`.
-2. Solve the set problem, [or use this SQL](/examples/scottish-independence.sql).
-3. Use the migrations tab in SQL Source Control to create and commit a migration script covering your change.
-4. Push to your branch, **don't merge to master yet**.
-5. Switch to the `master` branch, start with a new database or revert your changes.
+1. Start with a new database, see Repository & Database Setup for linking the database.
+- Create a branch from `master` called `express-shipping`.
+- Solve the above problem, [or use this SQL](/examples/scottish-independence.sql).
+- Use the migrations tab in SQL Source Control to create and commit a migration script covering your change.
+- Push to your branch, **don't merge to master yet**.
+- Switch to the `master` branch.
 
 ### Split Name Column
 
@@ -91,17 +94,18 @@ Column       | Before          | After
 `last_name`  | <doesn't exist> | Smith
 
 ###### Instructions
-1. Using your source control tool create a branch from `master` called `split-name`.
-2. Solve the set problem, [or use this SQL](/examples/split-name.sql).
-3. Use the migrations tab in SQL Source Control to create and commit a migration script covering your change.
-4. Push to your branch, **don't merge to master yet**.
-5. Switch to the `master` branch, start with a new database or revert your changes.
+1. Start with a new database, see Repository & Database Setup for linking the database.
+- Create a branch from `master` called `express-shipping`.
+- Solve the above problem, [or use this SQL](/examples/split-name.sql).
+- Use the migrations tab in SQL Source Control to create and commit a migration script covering your change.
+- Push to your branch, **don't merge to master yet**.
+- Switch to the `master` branch.
 
 ### Merging
 Now that you have created a few branches we can test merging by bringing all three of these branches onto `master`.
 ###### Instructions
-1. You can use source tree to merge each of the three branches: `express-shipping`, `scottish-independence` and `split-name`.
-2. When merging you may have conflicts, such as:
+1. You can use source tree or your preferred tool of choice to merge each of the three branches: `express-shipping`, `scottish-independence` and `split-name`.
+- When merging you may have conflicts, such as:
   1. `DeploymentOrder.json`, this file will often conflict when merging branches with migration scripts. In general you want to take both. You can find for more help [here](www.red-gate.com/SOC4/order-file-more-info).
-  2. `this.compare.empty-to-end-of-block.patch` This file should describe the end state after both changes you are merging.
-3. Push your commits to `master`
+  - `this.compare.empty-to-end-of-block.patch` This file should describe the end state after both changes you are merging.  This conflict may be removed in future versions.
+- Push your commits to `master`
