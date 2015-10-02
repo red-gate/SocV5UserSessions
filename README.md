@@ -5,9 +5,15 @@ Example scenarios for working with Migrations in SQL Source Control, using the f
 
 Firstly you will need the to enable the new Migrations features:
 
-1. Update to the latest [SQL Source Control, Frequent Updates](https://www.red-gate.com/products/sql-development/sql-source-control/frequent-updates)
+1. Update to the latest [SQL Source Control, Frequent Updates](http://documentation.red-gate.com/display/SOC4/Turning+on+Frequent+Updates)
 2. Edit the Engine options file: `%LocalAppData%\Red Gate\SQL Source Control 4\RedGate_SQLSourceControl_Engine_EngineOptions.xml`
-3. Add the following element: `<UseMigrationBlocks>True</UseMigrationBlocks>`
+3. Inside the <EngineOptions> tags, add: `<UseMigrationBlocks>True</UseMigrationBlocks>`
+4. Ignoring any comments (or other lines you may have added), the final file should look like this:
+```xml
+<EngineOptions version="4" type="EngineOptions">
+	<UseMigrationBlocks>True</UseMigrationBlocks>
+</EngineOptions>
+```
 
 ### Repository & Database Setup
 
@@ -45,7 +51,8 @@ Column              | Before             | After
 1. Using your source control tool create a branch from `master` called `express-shipping`.
 2. Solve the set problem, [or use this SQL](/examples/express-shipping.sql).
 3. Use the migrations tab in SQL Source Control to create and commit a migration script covering your change.
-4. Push to your branch, **but don't merge to yet**.
+4. Push to your branch, **don't merge to master yet**.
+5. Switch to the `master` branch, start with a new database or revert your changes.
 
 ### Scottish Independence
 
@@ -65,7 +72,8 @@ Column              | Before                 | After
 1. Using your source control tool create a branch from `master` called `scottish-independence`.
 2. Solve the set problem, [or use this SQL](/examples/scottish-independence.sql).
 3. Use the migrations tab in SQL Source Control to create and commit a migration script covering your change.
-4. Push to your branch, **but don't merge to yet**.
+4. Push to your branch, **don't merge to master yet**.
+5. Switch to the `master` branch, start with a new database or revert your changes.
 
 ### Split Name Column
 
@@ -86,7 +94,14 @@ Column       | Before          | After
 1. Using your source control tool create a branch from `master` called `split-name`.
 2. Solve the set problem, [or use this SQL](/examples/split-name.sql).
 3. Use the migrations tab in SQL Source Control to create and commit a migration script covering your change.
-4. Push to your branch, **but don't merge to yet**.
+4. Push to your branch, **don't merge to master yet**.
+5. Switch to the `master` branch, start with a new database or revert your changes.
 
 ### Merging
-Now that you have created a few branches we can test merging by bringing all three of these branches onto `master` using your source control and merging tools.
+Now that you have created a few branches we can test merging by bringing all three of these branches onto `master`.
+###### Instructions
+1. You can use source tree to merge each of the three branches: `express-shipping`, `scottish-independence` and `split-name`.
+2. When merging you may have conflicts, such as:
+  1. `DeploymentOrder.json`, this file will often conflict when merging branches with migration scripts. In general you want to take both. You can find for more help [here](www.red-gate.com/SOC4/order-file-more-info).
+  2. `this.compare.empty-to-end-of-block.patch` This file should describe the end state after both changes you are merging.
+3. Push your commits to `master`
