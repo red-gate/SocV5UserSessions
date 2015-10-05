@@ -11,7 +11,7 @@ Firstly you will need the to enable the new Migrations features:
 - Inside the <EngineOptions> tags, add: `<UseMigrationBlocks>True</UseMigrationBlocks>`
 - Ignoring any comments (or other lines you may have added), the final file should look like this:
 ```xml
-<EngineOptions version="4" type="EngineOptions">
+<EngineOptions version="3" type="EngineOptions">
 	<UseMigrationBlocks>True</UseMigrationBlocks>
 </EngineOptions>
 ```
