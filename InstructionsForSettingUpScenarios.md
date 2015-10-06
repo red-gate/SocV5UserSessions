@@ -1,59 +1,64 @@
-# Talkr Scenarios
-Example scenarios for working with Migrations in SQL Source Control, using the fictional phone company talkr.
+# Setting up the Talkr scenarios
+These instructions explain how to set up and run through scenarios for using migration scripts in SQL Source Control. They use the fictional phone company Talkr.
 
-### Enabling Migrations
-
-Firstly you will need the to enable the new Migrations features:
+## Enable the migrations alpha
 
 1. Turn on [Frequent Updates](http://documentation.red-gate.com/display/SOC4/Turning+on+Frequent+Updates)
 - Update to the latest SQL Source Control version.
-- Edit the Engine options file: `%LocalAppData%\Red Gate\SQL Source Control 4\RedGate_SQLSourceControl_Engine_EngineOptions.xml`
-- Inside the <EngineOptions> tags, add: `<UseMigrationBlocks>True</UseMigrationBlocks>`
+- Go to the SQL Source Control config files folder. By default, this is located at `%LocalAppData%\Red Gate\SQL Source Control 4\/`
+- Open `RedGate_SQLSourceControl_Engine_EngineOptions.xml` in a text editor.
+- Inside the `<EngineOptions>` tags, add: `<UseMigrationBlocks>True</UseMigrationBlocks>`
 - Ignoring any comments (or other lines you may have added), the final file should look like this:
 ```xml
 <EngineOptions version="3" type="EngineOptions">
 	<UseMigrationBlocks>True</UseMigrationBlocks>
 </EngineOptions>
 ```
+- Restart SQL Server Management Studio.
 
-### Repository Setup
+## Set up the repository
 
-1. Fork this repository.
-- Clone the repository to your development machine.
+You need to set up the repository to get the example database and scripts. 
 
-### Database Setup
-1. Create a new database in SQL Server: `talkr-master`.
-- Select the newly created `talkr-master` database.
-- In SQL Source Control:
+To do this, on your local machine, use Git to clone this repository (https://github.com/MightyAx/example-talkr).
+
+## Set up the database
+
+1. In SQL Server Management Studio, create a new database named `talkr-master`.
+- In the Object Explorer, select the database.
+- Select the database.
+- Open SQL Source Control:
   1. Go to the Setup tab.
-  - Choose "Link to my source control system".
-  - Choose "Git".
-  - Browse to the `database` folder inside your `example-talkr` repo.
+  - Select "Link to my source control system".
+  - Select "Git".
+  - Browse to the `database` folder inside the `example-talkr` repository you cloned.
   - Click "Link".
   - Go to the "Get Latest" tab.
   - Click "Apply changes to database".
-- Insert data into the database by [running this script](/examples/data.sql)
+- Insert the data into the database by [running this script](/examples/data.sql)
 
-### Database Diagram
-The talkr database currently consists of 3 tables (2 static data, 1 transactional), 3 views, and a function:
+## About the Talkr database
+The Talkr database consists of 3 tables (2 static data, 1 transactional), 3 views, and a function:
 ![Talkr Database Diagram](/images/talkr_db_diagram.png)
 
-### Default Express Shipping
+## The migrations scenarios
 
-We have a SQL Server database that stores details about our customers, and for each customer, it stores their preference for shipping speed.
+### 1: default express shipping
+
+In the Customers table, the express_shipping column stores their preference for shipping speed.
 
 There are currently 3 possible options: `1` express, `0` standard, and `NULL` no preference stated.
 
-You have been asked that for customers who currently have no preference stated, their preference should be set to express shipping.
+Your task: for customers who have no preference stated, set the preference to express shipping.
 
-Here's how an example shipping preference is stored in the database before and after the change:
+Here's an example of how shipping preference is stored in the database before and after the change:
 
 Column              | Before             | After
 --------------------|--------------------|-------------------------------
 `express_shipping`  | `0` / `1` / `NULL` | `0` / `1` (`NULL` becomes `1`)
 
 ###### Instructions
-1. Create a branch from `master` called `express-shipping`.
+1. Using Git, create a branch from `master` called `express-shipping`.
 - Use the Database Setup instructions above but name it `talkr-express-shipping`
 - Solve the above problem, [or use this SQL](/examples/express-shipping.sql).
 - Use the migrations tab in SQL Source Control to create a migration script covering your change.
