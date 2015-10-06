@@ -1,39 +1,6 @@
 # Talkr Scenarios
 Example scenarios for working with Migrations in SQL Source Control, using the fictional phone company talkr.
 
-### Enabling Migrations
-
-Firstly you will need the to enable the new Migrations features:
-
-1. Turn on [Frequent Updates](http://documentation.red-gate.com/display/SOC4/Turning+on+Frequent+Updates)
-- Update to the latest SQL Source Control version.
-- Edit the Engine options file: `%LocalAppData%\Red Gate\SQL Source Control 4\RedGate_SQLSourceControl_Engine_EngineOptions.xml`
-- Inside the <EngineOptions> tags, add: `<UseMigrationBlocks>True</UseMigrationBlocks>`
-- Ignoring any comments (or other lines you may have added), the final file should look like this:
-```xml
-<EngineOptions version="3" type="EngineOptions">
-	<UseMigrationBlocks>True</UseMigrationBlocks>
-</EngineOptions>
-```
-
-### Repository Setup
-
-1. Fork this repository.
-- Clone the repository to your development machine.
-
-### Database Setup
-1. Create a new database in SQL Server: `talkr-master`.
-- Select the newly created `talkr-master` database.
-- In SQL Source Control:
-  1. Go to the Setup tab.
-  - Choose "Link to my source control system".
-  - Choose "Git".
-  - Browse to the `database` folder inside your `example-talkr` repo.
-  - Click "Link".
-  - Go to the "Get Latest" tab.
-  - Click "Apply changes to database".
-- Insert data into the database by [running this script](/examples/data.sql)
-
 ### Database Diagram
 The talkr database currently consists of 3 tables (2 static data, 1 transactional), 3 views, and a function:
 ![Talkr Database Diagram](/images/talkr_db_diagram.png)
@@ -54,12 +21,17 @@ Column              | Before             | After
 
 ###### Instructions
 1. Create a branch from `master` called `express-shipping`.
-- Use the Database Setup instructions above but name it `talkr-express-shipping`
+- Link the `talkr-express-shipping` database.
+ 1. Go to the Setup tab.
+ - Choose "Link to my source control system".
+ - Choose "Git".
+ - Browse to the `database` folder inside your `example-talkr` repo.
+ - Click "Link".
 - Solve the above problem, [or use this SQL](/examples/express-shipping.sql).
 - Use the migrations tab in SQL Source Control to create a migration script covering your change.
 - Commit your migration script.
 - Push to your branch, **don't merge to master yet**.
-- Switch to the `master` branch.
+- Switch back to the `master` branch.
 
 ### Scottish Independence
 
@@ -77,12 +49,17 @@ Column              | Before                 | After
 
 ###### Instructions
 1. Create a branch from `master` called `scottish-independence`.
-- Use the Database Setup instructions above but name it `talkr-scottish-independence`
+- Link the `talkr-scottish-independence` database.
+ 1. Go to the Setup tab.
+ - Choose "Link to my source control system".
+ - Choose "Git".
+ - Browse to the `database` folder inside your `example-talkr` repo.
+ - Click "Link".
 - Solve the above problem, [or use this SQL](/examples/scottish-independence.sql).
 - Use the migrations tab in SQL Source Control to create a migration script covering your change.
 - Commit your migration script.
 - Push to your branch, **don't merge to master yet**.
-- Switch to the `master` branch.
+- Switch back to the `master` branch.
 
 ### Split Name Column
 
@@ -101,18 +78,25 @@ Column       | Before          | After
 
 ###### Instructions
 1.Create a branch from `master` called `split-name`.
-- Use the Database Setup instructions above but name it `talkr-split-name`
+- Link the `talkr-split-name` database.
+ 1. Go to the Setup tab.
+ - Choose "Link to my source control system".
+ - Choose "Git".
+ - Browse to the `database` folder inside your `example-talkr` repo.
+ - Click "Link".
 - Solve the above problem, [or use this SQL](/examples/split-name.sql).
 - Use the migrations tab in SQL Source Control to create a migration script covering your change.
 - Commit your migration script.
 - Push to your branch, **don't merge to master yet**.
-- Switch to the `master` branch.
+- Switch back to the `master` branch.
 
 ### Merging
 Now that you have created a few branches we can test merging by bringing all three of these branches onto `master`.
 ###### Instructions
-1. You can use source tree or your preferred tool of choice to merge each of the three branches: `express-shipping`, `scottish-independence` and `split-name`.
-- When merging you will have conflicts, such as:
-  1. `DeploymentOrder.json`, this file will often conflict when merging branches with migration scripts. In general you want to take both. You can find for more help [here](www.red-gate.com/SOC4/order-file-more-info).
-  - `this.compare.empty-to-end-of-block.patch` This file should describe the end state after both changes you are merging.  This conflict may be removed in future versions.
-- Push your commits to `master`
+1. You can use source tree to merge each of the three branches onto `master`:
+ - `express-shipping`
+ - `scottish-independence`
+ - `split-name`
+- When merging you will have conflicts:
+ - What do you understand about them?
+ - How would you do next?
