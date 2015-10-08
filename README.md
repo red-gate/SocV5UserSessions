@@ -7,13 +7,11 @@ The Talkr database consists of 3 tables (2 static data, 1 transactional), 3 view
 
 ## The scenarios
 
-### 1: default express shipping
+### 1: Default express shipping
 
-In the Customers table, the express_shipping column stores their preference for shipping speed.
+In the Customers table, the express_shipping column stores their preference for shipping speed. There are 3 options: `1` express, `0` standard, and `NULL` no preference stated.
 
-There are currently 3 possible options: `1` express, `0` standard, and `NULL` no preference stated.
-
-Your task: for customers who have no preference stated, set the preference to express shipping.
+Your task: remove the `NULL` option. So for customers who have no preference stated, set the preference to express shipping (`1`).
 
 Here's an example of how shipping preference is stored in the database before and after the change:
 
@@ -25,13 +23,13 @@ Column              | Before             | After
 
 1. Using Git, create a branch from `master` called `express-shipping`.
 - In SQL Server Management Studio, in the Object Explorer, select the database `talkr-express-shipping`.
-- In the Customers table, for customers who have no preference stated, set the preference to express shipping. You can use [this SQL script](/examples/express-shipping.sql) if you like. 
-- In SQL Source Control, open the migrations tab, and create a migration script to cover the change.
+- In the Customers table, in the express_shipping column, make the column `NOT NULL`. If the value is currently `NULL`, set it to `1`. You can use [this SQL script](/examples/express-shipping.sql) if you like. 
+- In SQL Source Control, open the Migrations tab, and create a migration script to cover the change.
 - Commit the migration script.
-- Push to your branch. **Don't merge to master yet**. (Is this needed?)
+- Push to your branch.
 - In Git, switch to the `master` branch.
 
-### 2: change a state to a country
+### 2: Change a state to a country
 
 Let's assume Scotland voted for independence. Your task: update the addresses for all the customers who live in Scotland.
 
@@ -48,16 +46,16 @@ Column              | Before                 | After
 #### Instructions
 
 1. Using Git, create a branch from `master` called `scottish-independence`.
-- In SQL Server Management Studio, in the Object Explorer, select the database `talkr-scottish-independence`
-- In the Customers table, for customers whose address is in Scotland, change the state code to null and the country code to SC. You can use [this SQL script](/examples/scottish-independence.sql) if you like.
-- In SQL Source Control, open the migrations tab, and create a migration script to cover the change.
+- In SQL Server Management Studio, in the Object Explorer, select the database `talkr-scottish-independence`.
+- In the Customers table, for customers whose `state_code` is `SCT`, change the `state_code` to `NULL` and the `country_code` to `SC`. You can use [this SQL script](/examples/scottish-independence.sql) if you like.
+- In SQL Source Control, open the Migrations tab, and create a migration script to cover the change.
 - Commit the migration script.
-- Push to your branch. **Don't merge to master yet**. (Is this needed?)
+- Push to your branch.
 - In Git, switch to the `master` branch.
 
-### 3: split a column
+### 3: Split a column
 
-Your task: in the Customers table, split the `name` column into two new columns, `first_name` & `last_name`.
+Your task: in the Customers table, split the `name` column into two new columns, `first_name` and `last_name`.
 
 Here's how an example title and name is stored in the database before and after the change:
 
@@ -71,11 +69,11 @@ Column       | Before          | After
 #### Instructions
 
 1. Using Git, create a branch from `master` called `split-name`.
-- In SQL Server Management Studio, in the Object Explorer, select the database `talkr-split-name`
-- In the Customers table, split the name column into first_name and last_name. You can use [this SQL script](/examples/split-name.sql) if you like.
-- In SQL Source Control, open the migrations tab, and create a migration script to cover the change.
+- In SQL Server Management Studio, in the Object Explorer, select the database `talkr-split-name`.
+- In the Customers table, split the `name` column into `first_name` and `last_name`. You can use [this SQL script](/examples/split-name.sql) if you like.
+- In SQL Source Control, open the Migrations tab, and create a migration script to cover the change.
 - Commit the migration script.
-- Push to your branch. **Don't merge to master yet**. (Is this needed?)
+- Push to your branch.
 - In Git, switch to the `master` branch.
 
 ### Merging
