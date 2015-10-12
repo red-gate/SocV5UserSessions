@@ -1,10 +1,6 @@
 # The Talkr scenarios
 These instructions explain how to run through scenarios for using migration scripts in SQL Source Control. They use the fictional phone company Talkr.
 
-## About the Talkr database
-The Talkr database consists of 3 tables (2 static data, 1 transactional), 3 views, and a function:
-![Talkr Database Diagram](/images/talkr_db_diagram.png)
-
 ## The scenarios
 
 ### 1: Change a state to a country
