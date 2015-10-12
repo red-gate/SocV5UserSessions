@@ -26,7 +26,7 @@ Column              | Before                 | After
 - Commit the migration script. (*Don't* push your changes.)
 - In Git, switch to the `master` branch.
 
-### 2: Default express shipping
+### 2: Set shipping to express by default
 
 In the Customers table, the express_shipping column stores their preference for shipping speed. There are 3 options: `1` express, `0` standard, and `NULL` no preference stated.
 
@@ -51,9 +51,3 @@ Column              | Before             | After
 
 We'd like you to test merging with migration scripts. Using Git, merge all the branches you created into master.
 
-#### Instructions
-1. You can use source tree or your preferred tool of choice to merge each of the three branches: `express-shipping`, `scottish-independence` and `split-name`.
-- When merging you will have conflicts, such as:
-  1. `DeploymentOrder.json`, this file will often conflict when merging branches with migration scripts. In general you want to take both. You can find for more help [here](www.red-gate.com/SOC4/order-file-more-info).
-  - `this.compare.empty-to-end-of-block.patch` This file should describe the end state after both changes you are merging.  This conflict may be removed in future versions.
-- Push your commits to `master`
