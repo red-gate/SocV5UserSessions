@@ -23,7 +23,7 @@ Column              | Before                 | After
 - In SQL Server Management Studio, in the Object Explorer, select the database `talkr-scottish-independence`.
 - In the Customers table, for customers whose `state_code` is `SCT`, change the `state_code` to `NULL` and the `country_code` to `SC`. You can use [this SQL script](/examples/scottish-independence.sql) if you like.
 - In SQL Source Control, open the Migrations tab, and create a migration script to cover the change.
-- Commit the migration script.
+- Commit the migration script. (*Don't* push your changes.)
 - In Git, switch to the `master` branch.
 
 ### 2: Default express shipping
@@ -44,7 +44,7 @@ Column              | Before             | After
 - In SQL Server Management Studio, in the Object Explorer, select the database `talkr-express-shipping`.
 - In the Customers table, in the express_shipping column, make the column `NOT NULL`. If the value is currently `NULL`, set it to `1`. You can use [this SQL script](/examples/express-shipping.sql) if you like. 
 - In SQL Source Control, open the Migrations tab, and create a migration script to cover the change.
-- Commit the migration script.
+- Commit the migration script.  (*Don't* push your changes.)
 - In Git, switch to the `master` branch.
 
 ### Merging
