@@ -7,29 +7,7 @@ The Talkr database consists of 3 tables (2 static data, 1 transactional), 3 view
 
 ## The scenarios
 
-### 1: Default express shipping
-
-In the Customers table, the express_shipping column stores their preference for shipping speed. There are 3 options: `1` express, `0` standard, and `NULL` no preference stated.
-
-Your task: remove the `NULL` option. So for customers who have no preference stated, set the preference to express shipping (`1`).
-
-Here's an example of how shipping preference is stored in the database before and after the change:
-
-Column              | Before             | After
---------------------|--------------------|-------------------------------
-`express_shipping`  | `0` / `1` / `NULL` | `0` / `1` (`NULL` becomes `1`)
-
-#### Instructions
-
-1. Using Git, create a branch from `master` called `express-shipping`.
-- In SQL Server Management Studio, in the Object Explorer, select the database `talkr-express-shipping`.
-- In the Customers table, in the express_shipping column, make the column `NOT NULL`. If the value is currently `NULL`, set it to `1`. You can use [this SQL script](/examples/express-shipping.sql) if you like. 
-- In SQL Source Control, open the Migrations tab, and create a migration script to cover the change.
-- Commit the migration script.
-- Push to your branch.
-- In Git, switch to the `master` branch.
-
-### 2: Change a state to a country
+### 1: Change a state to a country
 
 Let's assume Scotland voted for independence. Your task: update the addresses for all the customers who live in Scotland.
 
@@ -53,24 +31,23 @@ Column              | Before                 | After
 - Push to your branch.
 - In Git, switch to the `master` branch.
 
-### 3: Split a column
+### 2: Default express shipping
 
-Your task: in the Customers table, split the `name` column into two new columns, `first_name` and `last_name`.
+In the Customers table, the express_shipping column stores their preference for shipping speed. There are 3 options: `1` express, `0` standard, and `NULL` no preference stated.
 
-Here's how an example title and name is stored in the database before and after the change:
+Your task: remove the `NULL` option. So for customers who have no preference stated, set the preference to express shipping (`1`).
 
-Column       | Before          | After
--------------|-----------------|-----------------
-`title`      | Mr              | Mr
-`name`       | John Smith      | <doesn't exist>
-`first_name` | <doesn't exist> | John
-`last_name`  | <doesn't exist> | Smith
+Here's an example of how shipping preference is stored in the database before and after the change:
+
+Column              | Before             | After
+--------------------|--------------------|-------------------------------
+`express_shipping`  | `0` / `1` / `NULL` | `0` / `1` (`NULL` becomes `1`)
 
 #### Instructions
 
-1. Using Git, create a branch from `master` called `split-name`.
-- In SQL Server Management Studio, in the Object Explorer, select the database `talkr-split-name`.
-- In the Customers table, split the `name` column into `first_name` and `last_name`. You can use [this SQL script](/examples/split-name.sql) if you like.
+1. Using Git, create a branch from `master` called `express-shipping`.
+- In SQL Server Management Studio, in the Object Explorer, select the database `talkr-express-shipping`.
+- In the Customers table, in the express_shipping column, make the column `NOT NULL`. If the value is currently `NULL`, set it to `1`. You can use [this SQL script](/examples/express-shipping.sql) if you like. 
 - In SQL Source Control, open the Migrations tab, and create a migration script to cover the change.
 - Commit the migration script.
 - Push to your branch.
