@@ -9,7 +9,7 @@ For instructions on how to turn the alpha on, see [this page](MigrationsInstallI
 
 You need to set up the repository to get the example database and scripts. 
 
-To do this, on your local machine, use Git to clone this repository (https://github.com/MightyAx/example-talkr).
+To do this, on your local machine, use Git to clone [this repository](https://github.com/red-gate/SocV5UserSessions).
 
 ## Set up the database
 
